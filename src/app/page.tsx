@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PHASES } from "@/lib/workflow";
 
 function WingMark() {
@@ -75,6 +76,9 @@ export default function Home() {
             <a className="mv-nav-link" href="#close">
               Continuous loop
             </a>
+            <Link className="mv-nav-link" href="/podcast">
+              Scaling Wisdom ↗
+            </Link>
           </nav>
           <a className="mv-btn mv-btn-primary" href="#phases">
             Explore the engine
