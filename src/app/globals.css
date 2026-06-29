@@ -1,26 +1,310 @@
-@import "tailwindcss";
+/* ============================================================
+   Wellness design system — tokens + base + components
+   Class convention: mv- prefix, class-based, no scoped CSS.
+   ============================================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand (purple) */
+  --brand: #7a12d4;
+  --brand-bright: #9b37f2;
+  --brand-content: #680fb4;
+  --brand-dark: #4f0c8a;
+  --brand-light: #f8efff;
+  --brand-border: #eed8fe;
+
+  /* Support (semantic signals only) */
+  --blue: #005cff;
+  --blue-content: #1c3bd4;
+  --blue-dark: #1832b4;
+  --blue-light: #ebf5ff;
+  --green: #159f65;
+  --green-content: #128756;
+  --green-light: #e8f9f1;
+  --orange: #ed6325;
+  --orange-content: #c9541f;
+  --orange-light: #fff4e9;
+  --pink: #df1a6f;
+  --pink-light: #feeaf3;
+  --red: #f34747;
+
+  /* Neutral (cool grey) */
+  --grey-100: #f9f9f9;
+  --grey-200: #f3f4f6;
+  --grey-300: #ced1d7;
+  --grey-400: #979ca5;
+  --grey-500: #595e67;
+  --grey-600: #292d38;
+  --ink: #0f131a;
+  --white: #ffffff;
+
+  /* Semantic aliases (light mode) */
+  --bg: #ffffff;
+  --bg-muted: #f9f9f9;
+  --bg-subtle: #f3f4f6;
+  --surface: #ffffff;
+  --text: #0f131a;
+  --text-muted: #595e67;
+  --text-subtle: #71767f;
+  --text-disabled: #b3b8c1;
+  --text-inverse: #ffffff;
+  --link: #7a12d4;
+  --border: #dfe1e5;
+  --border-strong: #ced1d7;
+  --border-muted: #f3f4f6;
+  --focus-ring: #9b37f2;
+
+  /* Immersive dark surface */
+  --dark-bg: #0f131a;
+  --dark-bg-muted: #181d26;
+  --dark-bg-subtle: #292d38;
+  --dark-text: #ffffff;
+  --dark-text-muted: #b3b8c1;
+
+  /* Radius */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-full: 128px;
+
+  /* Elevation — three shadows only (+ focus) */
+  --shadow-light: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+  --shadow-focus: 0 0 0 4px rgba(155, 55, 242, 0.35);
+
+  /* Gradients (canonical, 2-stop) */
+  --grad-sunset: linear-gradient(135deg, #4f0c8a 0%, #df1a6f 100%);
+  --grad-dusk: linear-gradient(135deg, #4f0c8a 0%, #1832b4 100%);
+
+  /* Type — Google Sans only */
+  --font: "Google Sans", "Google Sans Text", "Product Sans", sans-serif;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Reset-ish base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+/* ---------- Typography scale ---------- */
+.mv-display-1 { font-size: 96px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.mv-display-2 { font-size: 60px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.mv-title-1 { font-size: 60px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.mv-title-2 { font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.mv-title-3 { font-size: 40px; font-weight: 700; line-height: 1.2; }
+.mv-title-4 { font-size: 32px; font-weight: 700; line-height: 1.2; }
+.mv-title-5 { font-size: 24px; font-weight: 500; line-height: 1.3; }
+.mv-title-6 { font-size: 20px; font-weight: 500; line-height: 1.3; }
+.mv-title-7 { font-size: 16px; font-weight: 500; line-height: 1.3; }
+.mv-title-8 { font-size: 14px; font-weight: 500; line-height: 1.3; }
+.mv-body-lg { font-size: 22px; font-weight: 400; line-height: 1.6; }
+.mv-body-md { font-size: 16px; font-weight: 400; line-height: 1.5; }
+.mv-body-sm { font-size: 14px; font-weight: 400; line-height: 1.5; }
+.mv-body-xs { font-size: 12px; font-weight: 400; line-height: 1.5; }
+.mv-overline {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-content);
+}
+
+/* ---------- Layout ---------- */
+.mv-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ---------- Top bar ---------- */
+.mv-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.mv-topbar-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.mv-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.mv-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.mv-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 120ms var(--ease-standard);
+}
+.mv-nav-link:hover { color: var(--text); }
+.mv-nav-link.is-active {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+
+/* ---------- Buttons (always pills) ---------- */
+.mv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  border-radius: var(--r-full);
+  padding: 14px 28px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 120ms var(--ease-standard),
+    transform 120ms var(--ease-standard), box-shadow 120ms var(--ease-standard);
+}
+.mv-btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.mv-btn:active { transform: translateY(1px); }
+.mv-btn-primary { background: var(--brand); color: var(--white); }
+.mv-btn-primary:hover { background: var(--brand-content); }
+.mv-btn-secondary {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.mv-btn-secondary:hover { background: var(--grey-100); }
+.mv-btn-ghost { background: transparent; color: var(--brand); }
+.mv-btn-ghost:hover { background: var(--brand-light); }
+.mv-btn-inverse { background: var(--white); color: var(--brand-dark); }
+.mv-btn-inverse:hover { background: var(--brand-light); }
+
+/* ---------- Badge ---------- */
+.mv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-full);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--brand-light);
+  color: var(--brand-content);
+}
+
+/* ---------- Card ---------- */
+.mv-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 24px;
+  box-shadow: var(--shadow-light);
+}
+.mv-card-interactive {
+  transition: transform 320ms var(--ease-standard),
+    box-shadow 320ms var(--ease-standard);
+}
+.mv-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ---------- Chips (tools) ---------- */
+.mv-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-muted);
+}
+
+/* ---------- Progress ---------- */
+.mv-progress {
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--grey-200);
+  overflow: hidden;
+}
+.mv-progress-bar {
+  height: 100%;
+  border-radius: var(--r-full);
+  background: var(--brand);
+}
+
+/* ---------- Sections ---------- */
+.mv-section { padding-top: 96px; padding-bottom: 96px; }
+.mv-section-tight { padding-top: 64px; padding-bottom: 64px; }
+
+/* ---------- Hero (dark immersive surface) ---------- */
+.mv-hero {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  position: relative;
+  overflow: hidden;
+}
+.mv-hero-grad {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-dusk);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .mv-display-1 { font-size: 64px; }
+  .mv-display-2 { font-size: 48px; }
+  .mv-title-1 { font-size: 36px; }
+  .mv-title-2 { font-size: 32px; }
+  .mv-title-3 { font-size: 28px; }
+  .mv-title-4 { font-size: 26px; }
+  .mv-title-5 { font-size: 22px; }
+  .mv-title-6 { font-size: 18px; }
+  .mv-section { padding-top: 64px; padding-bottom: 64px; }
+  .mv-section-tight { padding-top: 48px; padding-bottom: 48px; }
+  .mv-nav { display: none; }
 }
