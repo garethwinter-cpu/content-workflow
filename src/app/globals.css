@@ -308,3 +308,66 @@ a {
   .mv-section-tight { padding-top: 48px; padding-bottom: 48px; }
   .mv-nav { display: none; }
 }
+
+/* ============================================================
+   Podcast workflow additions — status pills, tracker rows,
+   skill chips. Built from the same tokens; mv- prefixed.
+   ============================================================ */
+
+/* ---------- Status pills ---------- */
+.mv-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-full);
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mv-status-green  { background: var(--green-light);  color: var(--green-content); }
+.mv-status-blue   { background: var(--blue-light);   color: var(--blue-content); }
+.mv-status-orange { background: var(--orange-light); color: var(--orange-content); }
+.mv-status-brand  { background: var(--brand-light);  color: var(--brand-content); }
+.mv-status-grey   { background: var(--grey-200);     color: var(--grey-500); }
+
+.mv-score { font-size: 14px; font-weight: 700; }
+
+/* ---------- Skill chip (monospace-ish, brand-tinted) ---------- */
+.mv-chip-skill {
+  background: var(--brand-light);
+  color: var(--brand-content);
+  border-color: var(--brand-border);
+  font-feature-settings: "tnum";
+}
+
+/* ---------- Tracker rows (lightweight table) ---------- */
+.mv-trow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.mv-trow:last-child { border-bottom: none; }
+.mv-trow-head {
+  background: var(--bg-subtle);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.mv-meta-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  border-top: 1px solid var(--border-muted);
+}
+
+@media (max-width: 768px) {
+  .mv-trow { flex-wrap: wrap; gap: 6px 12px; }
+  .mv-trow-head { display: none; }
+}
