@@ -10,6 +10,22 @@ pill buttons, rounded surfaces, three shadows).
 
 Built with [Next.js](https://nextjs.org) (App Router) + TypeScript.
 
+## Workflows
+
+This repo hosts multiple content-operations workflows:
+
+| Route | Workflow | What it is |
+|-------|----------|------------|
+| `/` | Organic Social — Workflow Engine | The eight-phase organic content loop. |
+| `/podcast` | **Scaling Wisdom — Podcast Workflow Engine** | Vishen's show, end-to-end: guest sourcing → outreach → pre-production & angle testing → shoot → edit hygiene + transcript → AI-assisted three-edit post (trailer / main / social) → review & delivery → launch & analytics. Includes live trackers (guest pipeline, the three edits, distribution sign-off, metrics) that bind to Airtable in a later pass.
+
+### Podcast workflow structure
+
+- `src/app/podcast/page.tsx` — the Scaling Wisdom page (strategy spine, 8-phase loop, live trackers).
+- `src/lib/podcast.ts` — show meta, operator laws, guest scorecard, show architecture, the 8 phases, and the tracker seed data.
+
+Strategy is reverse-engineered from the Diary of a CEO team, per the Scaling Wisdom Blueprint.
+
 ## The eight phases
 
 | # | Phase | Layer |
